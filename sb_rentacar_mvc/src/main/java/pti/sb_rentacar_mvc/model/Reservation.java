@@ -39,6 +39,71 @@ public class Reservation {
 	
 	@Column(name = "user_address")
 	private String userAdress;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getCarId() {
+		return carId;
+	}
+
+	public void setCarId(int carId) {
+		this.carId = carId;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	public int getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(int userPhone) {
+		this.userPhone = userPhone;
+	}
+
+	public String getUserAdress() {
+		return userAdress;
+	}
+
+	public void setUserAdress(String userAdress) {
+		this.userAdress = userAdress;
+	}
+	
 	
 	
 }

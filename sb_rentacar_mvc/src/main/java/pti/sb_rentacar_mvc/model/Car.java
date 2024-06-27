@@ -27,5 +27,47 @@ public class Car {
 	
 	@Column(name = "price")
 	private int price;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getPlateNumber() {
+		return plateNumber;
+	}
+
+	public void setPlateNumber(String plateNumber) {
+		this.plateNumber = plateNumber;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	
 	
 }

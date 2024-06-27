@@ -1,28 +1,31 @@
 package pti.sb_rentacar_mvc.dto;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class CarListDTO {
+public class ReservationDTO {
 
-	private List<CarDTO> carList;
+	private CarDTO carDto;
+	
 	private LocalDate startDate;
+	
 	private LocalDate endDate;
+	
+	private UserDTO userDto;
 
-	public CarListDTO(List<CarDTO> carList, LocalDate startDate, LocalDate endDate) {
+	public ReservationDTO(CarDTO carDto, LocalDate startDate, LocalDate endDate, UserDTO userDto) {
 		super();
-		this.carList = new ArrayList<>();
+		this.carDto = carDto;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.userDto = userDto;
 	}
 
-	public List<CarDTO> getCarList() {
-		return carList;
+	public CarDTO getCarDto() {
+		return carDto;
 	}
 
-	public void setCarList(List<CarDTO> carList) {
-		this.carList = carList;
+	public void setCarDto(CarDTO carDto) {
+		this.carDto = carDto;
 	}
 
 	public LocalDate getStartDate() {
@@ -40,12 +43,15 @@ public class CarListDTO {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	
-	
-	public void addCarToList(CarDTO car) {
-		
-		this.carList.add(car);
-		
+
+	public UserDTO getUserDto() {
+		return userDto;
 	}
+
+	public void setUserDto(UserDTO userDto) {
+		this.userDto = userDto;
+	}
+	
+	
 	
 }
