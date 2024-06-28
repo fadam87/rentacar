@@ -12,7 +12,7 @@ public class CarListDTO {
 
 	public CarListDTO(List<CarDTO> carList, LocalDate startDate, LocalDate endDate) {
 		super();
-		this.carList = new ArrayList<>();
+		this.carList = carList;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
@@ -42,10 +42,5 @@ public class CarListDTO {
 	}
 	
 	
-	public void addCarToList(CarDTO car) {
-		
-		this.carList.add(car);
-		
-	}
 	
 }

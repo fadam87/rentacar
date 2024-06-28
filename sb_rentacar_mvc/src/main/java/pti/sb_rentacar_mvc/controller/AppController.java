@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pti.sb_rentacar_mvc.dto.CarListDTO;
 import pti.sb_rentacar_mvc.service.AppService;
 
 @Controller
@@ -36,7 +37,9 @@ public class AppController {
 						@RequestParam("end") LocalDate endDate) {
 		
 		
-		System.out.println(startDate +" " + endDate);
+		CarListDTO carListDto = service.getAvaibleCarList(startDate, endDate);
+		
+		model.addAttribute("carlistdto" , carListDto);
 		
 		
 		return "carForRent.html";

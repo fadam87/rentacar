@@ -7,6 +7,23 @@
 <body>
 
 	<h3>Elérhető autók</h3>
+	
+	 <table border="1">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Plate Number</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="car : ${carlistdto.getCarList()}">
+                <td th:text="${car.getType()}"></td>
+                <td th:text="${car.getPlateNumber()}"></td>
+                <td th:text="${car.getPrice()}"></td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>
