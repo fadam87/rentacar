@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Succes</title>
+<body>
+
+	<h3>Sikeres regisztráció!</h3>
+	<h5>Regisztráció adatai:</h5>
+	
+	<p th:text="${'rendszám: '+ dto.getCarDto().getPlateNumber()}" />
+	<p th:text="${'típus: '+ dto.getCarDto().getType()}" />
+</body>
+</html>

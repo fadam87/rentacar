@@ -13,6 +13,7 @@ import org.hibernate.query.SelectionQuery;
 import org.springframework.stereotype.Repository;
 
 import pti.sb_rentacar_mvc.model.Car;
+import pti.sb_rentacar_mvc.model.Reservation;
 
 @Repository
 public class Database {
@@ -110,5 +111,28 @@ public class Database {
 		session.close();
 		
 		return integerList;
+	}
+
+	public Car getCarById(int carId) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		Car car = session.get(Car.class, carId);
+		
+		tx.commit();
+		session.close();
+		return car;
+	}
+
+	public void saveReservation(Reservation reservation) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.persist(reservation);
+		
+		tx.commit();
+		session.close();
+		
 	}
 }

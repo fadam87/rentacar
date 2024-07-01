@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import pti.sb_rentacar_mvc.database.Database;
 import pti.sb_rentacar_mvc.dto.CarDTO;
 import pti.sb_rentacar_mvc.dto.CarListDTO;
+import pti.sb_rentacar_mvc.dto.ReservationDTO;
+import pti.sb_rentacar_mvc.dto.UserDTO;
 import pti.sb_rentacar_mvc.model.Car;
+import pti.sb_rentacar_mvc.model.Reservation;
 
 @Service
 public class AppService {
@@ -50,7 +53,54 @@ public class AppService {
 		
 		return dto;
 	}
+	public ReservationDTO getReservationDto(int carId, LocalDate startDate, LocalDate endDate) {
+		
+		Car car = db.getCarById(carId);
+		
+		ReservationDTO dto = null;
+		
+		if (car != null) {
+		
+			CarDTO carDto = this.getCarDTOFromCar(car);
+			
+			dto = new ReservationDTO(carDto, startDate, endDate, null);
+		
+		}
+		
+
+		
+		return dto;
+	}
+	public ReservationDTO saveReservation(int carId, LocalDate startDate, LocalDate endDate, String userName, String userAddress,
+			String userEmail, int userPhone) {
+		// TODO Auto-generated method stub
+		
+		UserDTO userDto = new UserDTO(userName, userPhone, userAddress, userEmail);
+		Car car = db.getCarById(carId);
+		CarDTO carDto = this.getCarDTOFromCar(car);
+		
+		ReservationDTO dto = new ReservationDTO(carDto, startDate, endDate, userDto);
+		
+		Reservation reservation = new Reservation();
+		reservation.setCarId(carId);
+		reservation.setStartDate(startDate);
+		reservation.setEndDate(endDate);
+		reservation.setUserName(userName);
+		reservation.setUserEmail(userEmail);
+		reservation.setUserPhone(userPhone);
+		reservation.setUserAdress(userAddress);
+		
+		db.saveReservation(reservation);
+		
+		return dto;
+	}
 	
-	
+	private CarDTO getCarDTOFromCar(Car car) {
+		
+		
+		CarDTO carDto = new CarDTO(car.getId(), car.getType(), car.getPlateNumber(), car.getPrice());
+		
+		return carDto;
+	}
 	
 }
