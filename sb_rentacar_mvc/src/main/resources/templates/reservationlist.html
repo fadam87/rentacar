@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reservations</title>
+</head>
+<body>
+<h1>Reservation List</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                
+                
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>User Phone</th>
+                <th>User Address</th>
+                <th>Platenumber</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dto : ${dto.getReservationDtoList()}">
+                
+                
+                <td th:text="${dto.getStartDate()}"></td>
+                <td th:text="${dto.getEndDate()}"></td>
+                <td th:text="${dto.getUserDto().getUserName()}"></td>
+                <td th:text="${dto.getUserDto().getUserEmail()}"></td>
+                <td th:text="${dto.getUserDto().getUserPhone()}"></td>
+                <td th:text="${dto.getUserDto().getUserAddress()}"></td>
+                <td th:text="${dto.getCarDto().getPlateNumber()}"></td>
+                <td th:text="${dto.getCarDto().getType()}"></td>
+                
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

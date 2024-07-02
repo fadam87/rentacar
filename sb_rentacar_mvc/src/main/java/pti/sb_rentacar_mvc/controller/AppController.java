@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pti.sb_rentacar_mvc.dto.CarDTO;
 import pti.sb_rentacar_mvc.dto.CarListDTO;
 import pti.sb_rentacar_mvc.dto.ReservationDTO;
+import pti.sb_rentacar_mvc.dto.ReservationDTOList;
 import pti.sb_rentacar_mvc.service.AppService;
 
 @Controller
@@ -76,4 +78,64 @@ public class AppController {
 									
 		return "success.html";							
 		}
+	
+	@GetMapping("/admin")
+	public String startAdmin() {
+		
+		return "admin.html";
+		
+	}
+	
+	@GetMapping("/admin/list")
+	public String adminListReservations(Model model) {
+		
+		ReservationDTOList dto = service.getAllReservation();
+		
+		model.addAttribute("dto",dto);
+		
+		return "reservationlist.html";
+	}
+	@GetMapping("/admin/cars")
+	public String carAdmin(Model model) {
+		
+		CarListDTO carListDto = service.getCarList();
+		
+		model.addAttribute("dto",carListDto);
+		
+		return "selectioncar.html";
+	}
+	@GetMapping("/admin/cars/mod")
+	public String carModification(Model model,
+								@RequestParam("carid") int carId) {
+		
+		CarDTO carDto = service.getCarDTOFromId(carId);
+		
+		model.addAttribute("dto" , carDto);
+		
+		return "modificationcar.html";
+	}
+	@PostMapping("/admin/cars/mod/modification")
+	public String carModificationSave(Model model,
+									@RequestParam("platenumber") String PlateNumber,
+									@RequestParam("id") int carId,
+									@RequestParam("type") String type,
+									@RequestParam("price") int price,
+									@RequestParam("active") boolean active)
+	{
+		service.saveCar(carId, PlateNumber, type, price, active);
+		
+		return "admin.html";	
+	}
+	
+	@PostMapping("/admin/cars/new")
+	public String addNewCar(Model model,
+									@RequestParam("platenumber") String PlateNumber,
+									@RequestParam("type") String type,
+									@RequestParam("price") int price,
+									@RequestParam("active") boolean active)
+	{
+		service.addNewCar(PlateNumber, type, price, active);
+		
+		return "admin.html";	
+	}
 }

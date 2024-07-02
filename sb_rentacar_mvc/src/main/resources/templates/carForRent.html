@@ -11,15 +11,17 @@
 	 <table border="1">
         <thead>
             <tr>
-                <th>Type</th>
                 <th>Plate Number</th>
+                <th>Típus</th>
                 <th>Price</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="car : ${carlistdto.getCarList()}">
                 <td>
-                	<a th:href="${'/cars/startreserve?carid=' + car.getId()+'&start=' + carlistdto.getStartDate()+'&end=' + carlistdto.getEndDate()}" th:text="${car.getType()}"></a>
+<!--            <a th:href="@{/cars/startreserve(carid=${car.getId()}, start=${carlistdto.getStartDate()}, end=${carlistdto.getEndDate()})}" th:text="${car.getType()}"></a>   -->
+                <a th:href="${'/cars/startreserve?carid='+car.getId()+'&start='+carlistdto.getStartDate()+'&end='+carlistdto.getEndDate()}" th:text="${car.getType()}"></a>
+                
                 </td>
                 <td th:text="${car.getPlateNumber()}">
                 	

@@ -10,5 +10,7 @@
 	
 	<p th:text="${'rendszám: '+ dto.getCarDto().getPlateNumber()}" />
 	<p th:text="${'típus: '+ dto.getCarDto().getType()}" />
+	<p th:text="${'bérlés hossza: '+ dto.getLongOfReservation()} + ' nap'" />
+	<p th:text="${'bérlés díja: '+ dto.getReservationPrice() + 'Ft'}" />
 </body>
 </html>

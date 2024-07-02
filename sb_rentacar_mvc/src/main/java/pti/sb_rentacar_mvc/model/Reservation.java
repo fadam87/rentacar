@@ -38,7 +38,7 @@ public class Reservation {
 	private int userPhone;
 	
 	@Column(name = "user_address")
-	private String userAdress;
+	private String userAddress;
 
 	public int getId() {
 		return id;
@@ -96,12 +96,12 @@ public class Reservation {
 		this.userPhone = userPhone;
 	}
 
-	public String getUserAdress() {
-		return userAdress;
+	public String getUserAddress() {
+		return userAddress;
 	}
 
-	public void setUserAdress(String userAdress) {
-		this.userAdress = userAdress;
+	public void setUserAddress(String userAdress) {
+		this.userAddress = userAdress;
 	}
 	
 	

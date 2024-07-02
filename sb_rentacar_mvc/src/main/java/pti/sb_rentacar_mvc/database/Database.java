@@ -28,12 +28,6 @@ public class Database {
 		this.sessionFactory = cfg.buildSessionFactory();
 	}
 
-	public void closeDb() {
-
-		this.sessionFactory.close();
-
-	}
-
 	public List<Car> getAvaibleCars(LocalDate startDate, LocalDate endDate) {
 		
 		Session session = sessionFactory.openSession();
@@ -85,7 +79,7 @@ public class Database {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		
-		Query query = session.createNativeQuery("SELECT car_id FROM reservation WHERE "
+		Query query = session.createNativeQuery("SELECT car_id FROM reservations WHERE "
 				
 				+ "(start_date >= ?1 AND end_date <= ?2)OR"
 				+ "(start_date < ?1 AND end_date > ?1)"
@@ -130,6 +124,48 @@ public class Database {
 		Transaction tx = session.beginTransaction();
 		
 		session.persist(reservation);
+		
+		tx.commit();
+		session.close();
+		
+	}
+
+	public List<Reservation> getAllReservation() {
+		
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		SelectionQuery<Reservation> query = session.createSelectionQuery("SELECT r FROM Reservation r",Reservation.class);
+		
+		
+		List<Reservation> reservations = query.getResultList();
+		
+		tx.commit();
+		session.close();
+		return reservations;
+		
+	
+	}
+
+	public void updateCar(Car car) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.merge(car);
+		
+		tx.commit();
+		session.close();
+		
+	}
+
+	public void inserNewCar(Car car) {
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.persist(car);
 		
 		tx.commit();
 		session.close();

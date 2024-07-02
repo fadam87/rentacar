@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Modification</title>
+</head>
+<body>
+	<h3 th:text="${'Módosítani kívánt autó rendszáma: ' + dto.getPlateNumber()}"></h3>
+
+	<form action="/admin/cars/mod/modification" method="post">
+		<input type="hidden" th:value="${dto.id}" name="id"/>
+	    
+	    <label>Rendszám</label>
+	    <input type="text" th:value="${dto.plateNumber}" name="platenumber" />
+	    
+	    <label>Típus</label>
+	    <input type="text" th:value="${dto.type}" name="type" />
+	    
+	    <label>Ár</label>
+	    <input type="number" th:value="${dto.price}" name="price" />
+	    
+	    <label>Aktív?</label>
+	    <input type="checkbox" name="active"/>
+	    
+	    <button type="submit">Mentés</button>
+	</form>
+
+	
+
+</body>
+</html>

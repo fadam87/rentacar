@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ModCar</title>
+</head>
+<body>
+
+	<h4>Válaszd ki a módosítandó gépjárművet</h4>
+
+	<form action="/admin/cars/mod" method="get">
+		
+		<label>Válasszon autót:</label>
+    	
+          <select name="carid">
+        
+        <option th:each="car : ${dto.getCarList()}" th:value="${car.getId()}" th:text="${car.getPlateNumber()}"></option>
+    
+    </select>
+    <button type="submit">Választ</button>
+	
+	</form>
+	
+	<h3>Új autó hozzáadása</h3>
+	
+	<form action="/admin/cars/new" method="post">
+		
+		<label>Rendszám</label>
+		<input type="text" name="platenumber">
+		
+		<label>Típus</label>
+	    <input type="text" name="type" />
+	    
+	    <label>Ár</label>
+	    <input type="number" name="price" />
+	    
+	    <label>Aktív?</label>
+	    <input type="checkbox" name="active"/>
+	    
+	    <button type="submit">Mentés</button>
+		
+	</form>
+</body>
+</html>

@@ -1,7 +1,7 @@
 package pti.sb_rentacar_mvc.dto;
 
 import java.time.LocalDate;
-
+import java.time.temporal.ChronoUnit;
 public class ReservationDTO {
 
 	private CarDTO carDto;
@@ -52,6 +52,20 @@ public class ReservationDTO {
 		this.userDto = userDto;
 	}
 	
+	public long getLongOfReservation() {
+
+		
+		long rentalDays = ChronoUnit.DAYS.between(startDate, endDate)  + 1;
+		return rentalDays;
+	}
 	
+	public long getReservationPrice() {
+		
+		long returnValue = this.getLongOfReservation()*this.carDto.getPrice();
+		
+		return returnValue;
+		
+		
+	}
 	
 }
