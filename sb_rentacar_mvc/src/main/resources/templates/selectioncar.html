@@ -12,11 +12,11 @@
 		
 		<label>Válasszon autót:</label>
     	
-          <select name="carid">
+        <select name="carid">
         
-        <option th:each="car : ${dto.getCarList()}" th:value="${car.getId()}" th:text="${car.getPlateNumber()}"></option>
+       		<option th:each="car : ${dto.getCarList()}" th:value="${car.getId()}" th:text="${car.getPlateNumber()}"></option>
     
-    </select>
+    	</select>
     <button type="submit">Választ</button>
 	
 	</form>
@@ -39,6 +39,22 @@
 	    
 	    <button type="submit">Mentés</button>
 		
+	</form>
+	
+	<h4>Kép feltöltése</h4>
+	
+	<form action="/admin/cars/uploadpic" enctype="multipart/form-data" method="post">
+		
+		<label>Válasszon autót:</label>
+    	
+         <select name="carid">
+        
+        	<option th:each="car : ${dto.getCarList()}" th:value="${car.getId()}" th:text="${car.getPlateNumber()}"></option>
+    
+    	</select>
+    	<input type="file" name="file">
+    <button type="submit">Választ</button>
+	
 	</form>
 </body>
 </html>

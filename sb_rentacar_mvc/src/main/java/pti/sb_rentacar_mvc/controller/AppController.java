@@ -1,5 +1,6 @@
 package pti.sb_rentacar_mvc.controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import pti.sb_rentacar_mvc.dto.CarDTO;
 import pti.sb_rentacar_mvc.dto.CarListDTO;
@@ -137,5 +139,17 @@ public class AppController {
 		service.addNewCar(PlateNumber, type, price, active);
 		
 		return "admin.html";	
+	}
+	
+	@PostMapping("/admin/cars/uploadpic")
+	public String uploadPic(Model model,
+							@RequestParam("file") MultipartFile file,
+							@RequestParam("carid") int carId) throws IOException {
+		
+		CarDTO carDto = service.uploadPic(file, carId);
+		
+		model.addAttribute("car", carDto);
+		
+	return "succesupload.html";	
 	}
 }

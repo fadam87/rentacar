@@ -1,12 +1,13 @@
 package pti.sb_rentacar_mvc.service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import pti.sb_rentacar_mvc.database.Database;
 import pti.sb_rentacar_mvc.dto.CarDTO;
@@ -43,7 +44,7 @@ public class AppService {
 			
 			Car currentCar = carList.get(index);
 			
-			CarDTO carDto = new CarDTO(currentCar.getId(), currentCar.getPlateNumber(), currentCar.getType() ,currentCar.getPrice());
+			CarDTO carDto = this.getCarDTOFromCar(currentCar);
 		
 			dtoList.add(carDto);
 		}
@@ -99,7 +100,7 @@ public class AppService {
 	private CarDTO getCarDTOFromCar(Car car) {
 		
 		
-		CarDTO carDto = new CarDTO(car.getId(), car.getType(), car.getPlateNumber(), car.getPrice());
+		CarDTO carDto = new CarDTO(car.getId(), car.getType(), car.getPlateNumber(), car.getPrice(), car.getImage());
 		
 		return carDto;
 	}
@@ -173,6 +174,20 @@ public class AppService {
 		car.setActive(active);
 		
 		db.inserNewCar(car);
+	}
+	public CarDTO uploadPic(MultipartFile file, int carId) throws IOException {
+		
+		byte[] bFile = file.getBytes();
+		Car car = db.getCarById(carId);
+		car.setImage(bFile);
+		
+		db.updateCar(car);
+		
+		car = db.getCarById(carId);
+		
+		CarDTO carDto = this.getCarDTOFromCar(car);
+		
+		return carDto;
 	}
 	
 }

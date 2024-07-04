@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "cars")
@@ -27,6 +28,19 @@ public class Car {
 	
 	@Column(name = "price")
 	private int price;
+	
+	
+	@Lob
+	@Column(name = "pic")
+	private byte[] image;
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 
 	public int getId() {
 		return id;

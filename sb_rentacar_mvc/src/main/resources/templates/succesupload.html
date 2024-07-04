@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>uploaded</title>
+</head>
+<body>
+ 
+                
+                
+        <p th:text="${car.getPlateNumber()}"/>
+        <p th:text="${car.getPrice()}"/>        
+		<img th:src="'data:image/jpeg;base64,' + ${car.getImageBase64()}" width="250"/>
+ 
+
+               
+</body>
+</html>
